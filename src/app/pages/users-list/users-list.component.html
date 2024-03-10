@@ -1,1 +1,7 @@
-<p>users-list works!</p>
+<div class="row">
+  @for(user of response.results; track user.id){
+  <article>
+    <app-user-card [miUser]="user"></app-user-card>
+  </article>
+  }
+</div>
