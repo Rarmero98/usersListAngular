@@ -1,1 +1,14 @@
-<p>user-view works!</p>
+<section class="container">
+  <div class="card border-info">
+    <div class="row">
+      <figure class="col-12 col-md-3">
+        <img class="img-fluid" [src]="oneUser.image" [alt]="oneUser.username" />
+      </figure>
+      <div class="col-12 col-md-9">
+        <h1 class="h2">{{ oneUser.first_name + " " + oneUser.last_name }}</h1>
+        <p>Nombre de usuario: {{ oneUser.username }}</p>
+        <p>Email: {{ oneUser.email }}</p>
+      </div>
+    </div>
+  </div>
+</section>

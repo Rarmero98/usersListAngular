@@ -19,6 +19,7 @@ export class UsersListComponent {
       this.response = await this.usersServices.getAll();
     } catch (error) {
       console.log(error);
+      alert('Se han cometido errores');
     }
   }
 }
