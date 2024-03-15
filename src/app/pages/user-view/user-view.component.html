@@ -13,17 +13,7 @@
         <span class="fw-bold">Nombre de usuario: </span>{{ oneUser.username }}
       </p>
       <p><span class="fw-bold">Email: </span>{{ oneUser.email }}</p>
-      <div class="btn-group mt-4">
-        <button type="button" class="btn btn-outline-info">Eliminar</button>
-        <button type="button" class="btn btn-outline-info">Actualizar</button>
-        <button
-          type="button"
-          class="btn btn-outline-info"
-          [routerLink]="['/home']"
-        >
-          Volver a listado
-        </button>
-      </div>
+      <app-botonera [parent]="'view'" [idUser]="oneUser._id"></app-botonera>
     </div>
   </div>
 </section>
