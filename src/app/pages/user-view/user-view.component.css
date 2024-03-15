@@ -1,5 +1,9 @@
 @media screen and (min-width: 768px) {
-  .cssConfig {
-    border-left: 1px solid black;
+  .query {
+    border-left: 1px solid #10ccf4;
   }
+}
+
+.btn-outline-info:hover {
+  color: white;
 }

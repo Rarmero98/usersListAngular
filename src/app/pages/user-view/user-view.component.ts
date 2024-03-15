@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IUser } from '../../interfaces/iuser.interfaces';
 import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-user-view',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './user-view.component.html',
   styleUrl: './user-view.component.css',
 })
