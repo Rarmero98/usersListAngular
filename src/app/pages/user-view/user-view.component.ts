@@ -1,12 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { IUser } from '../../interfaces/iuser.interfaces';
 import { UsersService } from '../../services/users.service';
+import { BotoneraComponent } from '../../components/botonera/botonera.component';
 
 @Component({
   selector: 'app-user-view',
   standalone: true,
-  imports: [RouterLink],
+  imports: [BotoneraComponent],
   templateUrl: './user-view.component.html',
   styleUrl: './user-view.component.css',
 })
