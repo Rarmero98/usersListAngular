@@ -7,24 +7,23 @@
         [alt]="oneUser.username"
       />
     </figure>
-    <div class="cssConfig col-12 col-md-9">
+    <div class="query col-12 col-md-9">
       <h1 class="h2">{{ oneUser.first_name + " " + oneUser.last_name }}</h1>
       <p>
         <span class="fw-bold">Nombre de usuario: </span>{{ oneUser.username }}
       </p>
       <p><span class="fw-bold">Email: </span>{{ oneUser.email }}</p>
-      <!-- <div class="mw-100 row d-flex justify-content-between">
-        <div class="col-12 col-md-6 col-lg-3 mb-3">
-          <a href="#" class="btn btn-info text-white">Consultar</a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3 mb-3">
-          <a href="#" class="btn btn-info text-white">Actualizar</a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3 mb-3">
-          <a href="#" class="btn btn-info text-white">Borrar</a>
-        </div>
-      </div> -->
-      https://getbootstrap.com/docs/5.0/components/button-group/
+      <div class="btn-group mt-4">
+        <button type="button" class="btn btn-outline-info">Eliminar</button>
+        <button type="button" class="btn btn-outline-info">Actualizar</button>
+        <button
+          type="button"
+          class="btn btn-outline-info"
+          [routerLink]="['/home']"
+        >
+          Volver a listado
+        </button>
+      </div>
     </div>
   </div>
 </section>
