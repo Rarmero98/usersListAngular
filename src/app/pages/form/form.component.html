@@ -1,0 +1,49 @@
+<section>
+  <h1 class="h3">{{ function }} usuario</h1>
+  <hr class="color" />
+  <form [formGroup]="usersForm" (ngSubmit)="getDataForm()">
+    <div>
+      <label class="form-label" for="first_name">Nombre del usuario</label>
+      <input
+        class="form-control"
+        type="text"
+        id="first_name"
+        formControlName="first_name"
+      />
+    </div>
+    <div>
+      <label class="form-label" for="last_name">Apellido del usuario</label>
+      <input
+        class="form-control"
+        type="text"
+        id="last_name"
+        formControlName="last_name"
+      />
+    </div>
+    <div>
+      <label class="form-label" for="email"
+        >Dirección de correo electrónico del usuario</label
+      >
+      <input
+        class="form-control"
+        type="email"
+        id="email"
+        formControlName="email"
+      />
+    </div>
+    <div>
+      <label class="form-label" for="image">Imagen del usuario</label>
+      <input
+        class="form-control"
+        type="url"
+        id="image"
+        formControlName="image"
+      />
+    </div>
+    <input
+      type="submit"
+      value="{{ action }}"
+      class="btn btn-info text-white mt-3"
+    />
+  </form>
+</section>
