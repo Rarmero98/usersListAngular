@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { UsersService } from '../../services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -17,6 +19,8 @@ export class FormComponent {
   function: string = 'Nuevo';
   action: string = 'Guardar';
   usersForm: FormGroup;
+  usersService = inject(UsersService);
+  router = inject(Router);
 
   constructor() {
     this.usersForm = new FormGroup(
@@ -34,7 +38,7 @@ export class FormComponent {
         email: new FormControl('', [
           Validators.required,
           Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/),
-          // Esta la vimos en clase
+          // Procedencia de la expresión regular: esta la vimos en clase
         ]),
         image: new FormControl('', [
           Validators.required,
@@ -46,8 +50,16 @@ export class FormComponent {
     );
   }
 
-  getDataForm() {
-    this.usersForm.reset();
+  async getDataForm() {
+    const response = await this.usersService.create(this.usersForm.value);
+    if (response.id) {
+      alert(
+        `Enhorabuena, ${response.first_name}, te has registrado correctamente. ¡Bienvenido a nuestro listado de usuarios!`
+      );
+      this.router.navigate(['/home']);
+    } else {
+      alert('Ha habido un problema. Inténtalo de nuevo');
+    }
   }
 
   checkControl(
