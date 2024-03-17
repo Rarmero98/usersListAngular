@@ -3,46 +3,82 @@
   <hr class="color" />
   <form [formGroup]="usersForm" (ngSubmit)="getDataForm()">
     <div>
-      <label class="form-label" for="first_name">Nombre del usuario</label>
+      <label class="form-label fw-semibold" for="first_name"
+        >Nombre del usuario</label
+      >
       <input
         class="form-control"
         type="text"
+        placeholder="Introduce un nombre"
         id="first_name"
         formControlName="first_name"
       />
+      @if (checkControl('first_name', 'required')) {
+      <p class="error">Campo requerido</p>
+      } @if (checkControl('first_name', 'pattern')) {
+      <p class="error">Debes introducir un nombre propio válido</p>
+      }
     </div>
     <div>
-      <label class="form-label" for="last_name">Apellido del usuario</label>
+      <label class="form-label fw-semibold" for="last_name"
+        >Apellido del usuario</label
+      >
       <input
         class="form-control"
         type="text"
+        placeholder="Introduce un apellido"
         id="last_name"
         formControlName="last_name"
       />
+      @if (checkControl('last_name', 'required')) {
+      <p class="error">Campo requerido</p>
+      } @if (checkControl('last_name', 'pattern')) {
+      <p class="error">Debes introducir un apellido válido</p>
+      }
     </div>
     <div>
-      <label class="form-label" for="email"
+      <label class="form-label fw-semibold" for="email"
         >Dirección de correo electrónico del usuario</label
       >
       <input
         class="form-control"
         type="email"
+        placeholder="Introduce una dirección de correo electrónico"
         id="email"
         formControlName="email"
       />
+      @if (checkControl('email', 'required')) {
+      <p class="error">Campo requerido</p>
+      } @if (checkControl('email', 'pattern')) {
+      <p class="error">
+        Debes introducir una dirección de correo electrónico válida
+      </p>
+      }
     </div>
     <div>
-      <label class="form-label" for="image">Imagen del usuario</label>
+      <label class="form-label fw-semibold" for="image"
+        >Imagen del usuario</label
+      >
       <input
         class="form-control"
         type="url"
+        placeholder="Introduce una imagen en formato URL"
         id="image"
         formControlName="image"
       />
+      @if (checkControl('image', 'required')) {
+      <p class="error">Campo requerido</p>
+      } @if (checkControl('image', 'pattern')) {
+      <p class="error">
+        Debes introducir una imagen en formato URL a través de un enlace que
+        empiece por http o https
+      </p>
+      }
     </div>
     <input
       type="submit"
       value="{{ action }}"
+      [disabled]="!usersForm.valid"
       class="btn btn-info text-white mt-3"
     />
   </form>
