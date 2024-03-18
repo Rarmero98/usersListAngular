@@ -28,4 +28,10 @@ export class UsersService {
   create(formValue: IUser): Promise<IUser> {
     return lastValueFrom(this.httpClient.post<IUser>(this.baseUrl, formValue));
   }
+
+  update(formValue: IUser): Promise<IUser> {
+    return lastValueFrom(
+      this.httpClient.put<IUser>(`${this.baseUrl}/${formValue._id}`, formValue)
+    );
+  }
 }

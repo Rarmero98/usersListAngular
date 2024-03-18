@@ -6,7 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form',
@@ -21,6 +22,7 @@ export class FormComponent {
   usersForm: FormGroup;
   usersService = inject(UsersService);
   router = inject(Router);
+  activatedRoute = inject(ActivatedRoute);
 
   constructor() {
     this.usersForm = new FormGroup(
@@ -50,15 +52,58 @@ export class FormComponent {
     );
   }
 
+  ngOnInit() {
+    this.activatedRoute.params.subscribe(async (params: any) => {
+      if (params._id) {
+        const response = await this.usersService.getById(params._id);
+        this.usersForm = new FormGroup(
+          {
+            _id: new FormControl(response._id, []),
+            first_name: new FormControl(response.first_name, [
+              Validators.required,
+              Validators.pattern(/\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/),
+            ]),
+            last_name: new FormControl(response.last_name, [
+              Validators.required,
+              Validators.pattern(/\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/),
+            ]),
+            email: new FormControl(response.email, [
+              Validators.required,
+              Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,6}$/),
+              // En este caso se modifica la expresión regular para adecuarse al .online de los usuarios ya creados
+            ]),
+            image: new FormControl(response.image, [
+              Validators.required,
+              Validators.pattern(/^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/),
+            ]),
+          },
+          []
+        );
+      }
+    });
+  }
+
   async getDataForm() {
-    const response = await this.usersService.create(this.usersForm.value);
-    if (response.id) {
-      alert(
-        `Enhorabuena, ${response.first_name}, te has registrado correctamente. ¡Bienvenido a nuestro listado de usuarios!`
-      );
-      this.router.navigate(['/home']);
+    if (this.usersForm.value._id) {
+      const response = await this.usersService.update(this.usersForm.value);
+      if (response.id) {
+        alert(
+          `Estupendo, ${response.first_name}, has actualizado tu usuario correctamente. ¡A seguir disfrutando de nuestro listado de usuarios!`
+        );
+        this.router.navigate(['/home']);
+      } else {
+        alert('Ha habido un problema. Inténtalo de nuevo');
+      }
     } else {
-      alert('Ha habido un problema. Inténtalo de nuevo');
+      const response = await this.usersService.create(this.usersForm.value);
+      if (response.id) {
+        alert(
+          `Enhorabuena, ${response.first_name}, te has registrado correctamente. ¡Bienvenido a nuestro listado de usuarios!`
+        );
+        this.router.navigate(['/home']);
+      } else {
+        alert('Ha habido un problema. Inténtalo de nuevo');
+      }
     }
   }
 
