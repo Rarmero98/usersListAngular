@@ -1,6 +1,22 @@
 <header class="p-2 bg-info text-white sticky-top">
   <div class="container">
-    <h1 class="h3">Listado de usuarios</h1>
+    <nav>
+      <div class="d-flex justify-content-between">
+        <h1 class="h2 pointer hover" [routerLink]="['/home']">
+          <i class="fa-solid fa-users-rectangle"></i> Listado de usuarios
+        </h1>
+        <div class="navbar-nav flex-row align-items-center gap-4">
+          <a class="h5 text-decoration-none hover" [routerLink]="['/home']"
+            ><i class="fa-solid fa-house"></i> Home</a
+          >
+          <a
+            class="h5 text-decoration-none hover"
+            [routerLink]="['/new', 'user']"
+            ><i class="fa-solid fa-user-plus"></i> Nuevo usuario</a
+          >
+        </div>
+      </div>
+    </nav>
   </div>
 </header>
 <main class="mt-4 mb-4">
@@ -10,6 +26,13 @@
 </main>
 <footer class="p-2 bg-info text-white fixed-bottom">
   <div class="container">
-    <p class="text-center">© 2024 Rarmero98</p>
+    <p class="text-center">
+      <a
+        href="https://github.com/Rarmero98"
+        target="_blank"
+        class="pointer hover"
+        >© 2024 Rarmero98</a
+      >
+    </p>
   </div>
 </footer>

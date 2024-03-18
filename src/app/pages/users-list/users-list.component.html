@@ -4,4 +4,17 @@
     <app-user-card [miUser]="user"></app-user-card>
   </article>
   }
+  <nav class="mb-5 d-flex justify-content-center">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" [routerLink]="['/home', response.page]">1</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" [routerLink]="['/home', response.page]">2</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" [routerLink]="['/home', response.page]">3</a>
+      </li>
+    </ul>
+  </nav>
 </div>

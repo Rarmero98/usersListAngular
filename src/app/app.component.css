@@ -1,0 +1,13 @@
+.pointer {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+.hover {
+  transition: color ease-in-out 250ms;
+}
+
+.hover:hover {
+  color: black;
+}

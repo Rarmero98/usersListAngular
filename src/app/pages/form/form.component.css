@@ -1,0 +1,17 @@
+.color {
+  border-top: 2px solid #10ccf4;
+}
+
+input.ng-invalid.ng-touched {
+  border: 2px solid rgb(255, 38, 0);
+}
+
+input.ng-valid.ng-touched {
+  border: 2px solid rgb(47, 255, 0);
+}
+
+.error {
+  color: rgb(255, 38, 0);
+  font-size: 80%;
+  margin: 0 0 0 20px;
+}
