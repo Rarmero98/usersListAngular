@@ -17,8 +17,12 @@ import Swal from 'sweetalert2';
   styleUrl: './form.component.css',
 })
 export class FormComponent {
-  function: string = 'Nuevo';
+  function: string = 'Crear/Editar';
   action: string = 'Guardar';
+  // function: string = '';
+  // action: string = '';
+  // Los he intentado inicializar a vacío e insertarles el valor más adelante, pero no he sabido hacerlo
+
   usersForm: FormGroup;
   usersService = inject(UsersService);
   router = inject(Router);
@@ -86,6 +90,11 @@ export class FormComponent {
   async getDataForm() {
     if (this.usersForm.value._id) {
       const response = await this.usersService.update(this.usersForm.value);
+
+      // this.function = 'Editar';
+      // this.action = 'Actualizar';
+      // Consigo que se pinte el valor cuando le doy al botón para enviar el formulario, pero no antes
+
       if (response.id) {
         Swal.fire({
           position: 'center',
@@ -106,6 +115,11 @@ export class FormComponent {
       }
     } else {
       const response = await this.usersService.create(this.usersForm.value);
+
+      // this.function = 'Crear';
+      // this.action = 'Guardar';
+      // Ocurre lo mismo
+
       if (response.id) {
         Swal.fire({
           position: 'center',
