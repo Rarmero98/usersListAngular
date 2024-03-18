@@ -87,22 +87,42 @@ export class FormComponent {
     if (this.usersForm.value._id) {
       const response = await this.usersService.update(this.usersForm.value);
       if (response.id) {
-        alert(
-          `Estupendo, ${response.first_name}, has actualizado tu usuario correctamente. ¡A seguir disfrutando de nuestro listado de usuarios!`
-        );
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: `Estupendo, ${response.first_name}, has actualizado tu usuario correctamente. ¡A seguir disfrutando de nuestro listado de usuarios!`,
+          showConfirmButton: false,
+          timer: 4000,
+        });
         this.router.navigate(['/home']);
       } else {
-        alert('Ha habido un problema. Inténtalo de nuevo');
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Ha habido un problema. Inténtalo de nuevo',
+          showConfirmButton: false,
+          timer: 2000,
+        });
       }
     } else {
       const response = await this.usersService.create(this.usersForm.value);
       if (response.id) {
-        alert(
-          `Enhorabuena, ${response.first_name}, te has registrado correctamente. ¡Bienvenido a nuestro listado de usuarios!`
-        );
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: `Enhorabuena, ${response.first_name}, te has registrado correctamente. ¡Bienvenido a nuestro listado de usuarios!`,
+          showConfirmButton: false,
+          timer: 3000,
+        });
         this.router.navigate(['/home']);
       } else {
-        alert('Ha habido un problema. Inténtalo de nuevo');
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Ha habido un problema. Inténtalo de nuevo',
+          showConfirmButton: false,
+          timer: 2000,
+        });
       }
     }
   }
